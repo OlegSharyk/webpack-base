@@ -2,7 +2,7 @@
     "name": "webpack-tutorial",
     "version": "1.0.0",
     "description": "webpack tutorial course",
-    "main": "index.js",
+    "private": true,
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack --mode development",
@@ -19,10 +19,16 @@
     "devDependencies": {
         "clean-webpack-plugin": "^3.0.0",
         "css-loader": "^3.5.3",
+        "csv-loader": "^3.0.3",
         "file-loader": "^6.0.0",
         "html-webpack-plugin": "^4.3.0",
+        "papaparse": "^5.2.0",
         "style-loader": "^1.2.1",
         "webpack": "^4.43.0",
-        "webpack-cli": "^3.3.11"
+        "webpack-cli": "^3.3.11",
+        "xml-loader": "^1.2.1"
+    },
+    "dependencies": {
+        "normalize.css": "^8.0.1"
     }
 }
