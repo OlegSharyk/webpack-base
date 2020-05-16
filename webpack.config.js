@@ -6,8 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 
-const isDev = (process.env.NODE_ENV = 'development');
-const isProd = (process.env.NODE_ENV = 'production');
+const isDev = process.env.NODE_ENV === 'development';
+const isProd = process.env.NODE_ENV === 'production';
 
 const optimization = () => {
     const config = {
@@ -26,6 +26,8 @@ const optimization = () => {
     return config;
 };
 
+const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
+
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
@@ -34,7 +36,7 @@ module.exports = {
         analytics: './analytics.js',
     },
     output: {
-        filename: '[name].[contenthash].js',
+        filename: filename('js'),
         path: path.resolve(__dirname, 'dist'),
     },
     resolve: {
@@ -47,7 +49,7 @@ module.exports = {
     optimization: optimization(),
     devServer: {
         port: 4200,
-        hot: isDev,
+        hot: Boolean(isDev),
     },
     plugins: [
         new HTMLWebpackPlugin({
@@ -66,7 +68,7 @@ module.exports = {
             ],
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
+            filename: filename('css'),
         }),
     ],
     module: {
@@ -82,6 +84,34 @@ module.exports = {
                         },
                     },
                     'css-loader',
+                ],
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: isDev,
+                            reloadAll: true,
+                        },
+                    },
+                    'css-loader',
+                    'less-loader',
+                ],
+            },
+            {
+                test: /\.s[ac]ss$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: isDev,
+                            reloadAll: true,
+                        },
+                    },
+                    'css-loader',
+                    'sass-loader',
                 ],
             },
             {
