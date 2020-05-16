@@ -1,18 +1,20 @@
 class Post {
-    constructor(title){
+    constructor(title, img) {
         this.title = title;
-        this.date = new Date()
+        this.date = new Date();
+        this.img = img;
     }
 
-    toString(){
+    toString() {
         return JSON.stringify({
-            title: this.title ,
-            date: this.date.toJSON()
-        })
+            title: this.title,
+            date: this.date.toJSON(),
+            img: this.img,
+        });
     }
 
     get uppercaseTitle() {
-        return this.title.toUpperCase()
+        return this.title.toUpperCase();
     }
 }
 
