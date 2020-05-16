@@ -1,3 +1,4 @@
+import * as $ from 'jquery';
 import Post from '@models/Post';
 import WebpackLogo from '@/assets/webpack-logo.png';
 // import json from './assets/json';
@@ -7,7 +8,9 @@ import './styles/styles.css';
 
 const post = new Post('Webpack post title', WebpackLogo);
 
-console.log('post to string -> ', post.toString());
+$('pre').html(post.toString());
+
+// console.log('post to string -> ', post.toString());
 
 // console.log('JSON :', json);
 // console.log('XML :', xml);
