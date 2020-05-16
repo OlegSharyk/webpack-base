@@ -17,6 +17,9 @@
     "author": "Oleg Sharyk",
     "license": "ISC",
     "devDependencies": {
+        "@babel/core": "^7.9.6",
+        "@babel/preset-env": "^7.9.6",
+        "babel-loader": "^8.1.0",
         "clean-webpack-plugin": "^3.0.0",
         "copy-webpack-plugin": "^6.0.1",
         "cross-env": "^7.0.2",
@@ -39,7 +42,9 @@
         "xml-loader": "^1.2.1"
     },
     "dependencies": {
+        "@babel/polyfill": "^7.8.7",
         "jquery": "^3.5.1",
         "normalize.css": "^8.0.1"
-    }
+    },
+    "browserslist": "> 0.25%, not dead"
 }
